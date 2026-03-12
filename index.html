@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IMAGIX Repository</title>
 
 <style>
 
-body{
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
 font-family:Arial, sans-serif;
-color:white;
+}
+
+body{
+height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
-min-height:100vh;
-overflow:hidden;
+color:white;
 text-align:center;
+overflow:hidden;
 }
 
-/* SLIDESHOW BACKGROUND */
+/* SLIDESHOW */
 
 .slideshow{
 position:fixed;
@@ -35,20 +41,23 @@ width:100%;
 height:100%;
 object-fit:cover;
 opacity:0;
-animation:slideShow 12s infinite;
+animation:slide 21s infinite;
 }
 
-.slideshow img:nth-child(1){animation-delay:0s}
-.slideshow img:nth-child(2){animation-delay:3s}
-.slideshow img:nth-child(3){animation-delay:6s}
-.slideshow img:nth-child(4){animation-delay:9s}
+.slideshow img:nth-child(1){animation-delay:0s;}
+.slideshow img:nth-child(2){animation-delay:3s;}
+.slideshow img:nth-child(3){animation-delay:6s;}
+.slideshow img:nth-child(4){animation-delay:9s;}
+.slideshow img:nth-child(5){animation-delay:12s;}
+.slideshow img:nth-child(6){animation-delay:15s;}
+.slideshow img:nth-child(7){animation-delay:18s;}
 
-@keyframes slideShow{
-0%{opacity:0}
-8%{opacity:1}
-25%{opacity:1}
-33%{opacity:0}
-100%{opacity:0}
+@keyframes slide{
+0%{opacity:0;}
+5%{opacity:1;}
+20%{opacity:1;}
+25%{opacity:0;}
+100%{opacity:0;}
 }
 
 /* DARK OVERLAY */
@@ -65,21 +74,10 @@ z-index:-2;
 
 /* FLOATING PARTICLES */
 
-.particles{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-z-index:-1;
-}
-
 .particles span{
 position:absolute;
-display:block;
-width:6px;
-height:6px;
+width:5px;
+height:5px;
 background:white;
 border-radius:50%;
 opacity:0.6;
@@ -87,73 +85,60 @@ animation:float 12s linear infinite;
 }
 
 @keyframes float{
-0%{
-transform:translateY(100vh) scale(0);
-opacity:0;
-}
-50%{
-opacity:0.8;
-}
-100%{
-transform:translateY(-10vh) scale(1);
-opacity:0;
-}
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
 }
 
-/* RANDOM PARTICLE POSITIONS */
+.particles span:nth-child(1){left:10%;animation-delay:0s;}
+.particles span:nth-child(2){left:20%;animation-delay:2s;}
+.particles span:nth-child(3){left:30%;animation-delay:4s;}
+.particles span:nth-child(4){left:70%;animation-delay:1s;}
+.particles span:nth-child(5){left:80%;animation-delay:3s;}
+.particles span:nth-child(6){left:90%;animation-delay:5s;}
 
-.particles span:nth-child(1){left:10%;animation-delay:0s}
-.particles span:nth-child(2){left:20%;animation-delay:2s}
-.particles span:nth-child(3){left:30%;animation-delay:4s}
-.particles span:nth-child(4){left:40%;animation-delay:1s}
-.particles span:nth-child(5){left:60%;animation-delay:3s}
-.particles span:nth-child(6){left:70%;animation-delay:5s}
-.particles span:nth-child(7){left:80%;animation-delay:2s}
-.particles span:nth-child(8){left:90%;animation-delay:4s}
-
-/* MAIN CONTENT */
+/* CONTENT */
 
 .container{
 width:90%;
-max-width:420px;
+max-width:400px;
 }
 
 /* LOGO */
 
 .logo{
-width:230px;
+width:150px;
 margin-bottom:10px;
 }
 
 /* TITLE */
 
 h1{
-font-size:22px;
+font-size:20px;
 margin-bottom:25px;
+font-weight:600;
 }
 
 /* INPUTS */
 
 input{
 width:100%;
-padding:14px;
-margin-top:14px;
+padding:12px;
+margin-top:12px;
 border:none;
-border-radius:10px;
-background:rgba(0,0,0,0.5);
+border-radius:8px;
+background:rgba(0,0,0,0.6);
 color:white;
-font-size:15px;
-outline:none;
+font-size:14px;
 }
 
-/* TRANSPARENT BUTTON */
+/* BUTTON */
 
 button{
 width:100%;
-padding:14px;
-margin-top:20px;
+padding:12px;
+margin-top:18px;
 border:2px solid white;
-border-radius:10px;
+border-radius:8px;
 background:rgba(255,255,255,0.2);
 color:white;
 font-weight:bold;
@@ -162,18 +147,18 @@ transition:0.3s;
 }
 
 button:hover{
-background:rgba(255,255,255,0.35);
+background:rgba(255,255,255,0.4);
 transform:scale(1.05);
 }
 
 </style>
+
 </head>
 
 <body>
 
-<!-- BACKGROUND -->
-
 <div class="slideshow">
+
 <img src="bg1.jpeg">
 <img src="bg2.jpeg">
 <img src="bg3.jpeg">
@@ -181,11 +166,10 @@ transform:scale(1.05);
 <img src="bg5.jpeg">
 <img src="bg6.jpeg">
 <img src="bg7.jpeg">
+
 </div>
 
 <div class="overlay"></div>
-
-<!-- FLOATING LIGHT PARTICLES -->
 
 <div class="particles">
 <span></span>
@@ -194,18 +178,14 @@ transform:scale(1.05);
 <span></span>
 <span></span>
 <span></span>
-<span></span>
-<span></span>
 </div>
-
-<!-- FORM -->
 
 <div class="container">
 
 <img class="logo" src="logo.jpeg">
 
 <h1>
-IMAGIX - The Official Photography Society of KIIT Law School<br>
+IMAGIX – The Official Photography Society of KIIT Law School  
 (Link Repository System)
 </h1>
 
@@ -241,11 +221,11 @@ method:'POST',
 body:new FormData(form)
 })
 .then(()=>{
-alert("Thank you, "+userName+"! Your response has been submitted.")
+alert("Thank you "+userName+"! Your response has been submitted.")
 form.reset()
 })
 .catch(()=>{
-alert("Submission failed. Please try again.")
+alert("Submission failed.")
 })
 
 })
