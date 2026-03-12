@@ -14,24 +14,20 @@ box-sizing:border-box;
 font-family:Arial, sans-serif;
 }
 
-body{
-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-color:white;
-text-align:center;
+html,body{
+height:100%;
+width:100%;
 overflow:hidden;
 }
 
-/* SLIDESHOW */
+/* FULL SCREEN BACKGROUND */
 
 .slideshow{
 position:fixed;
 top:0;
 left:0;
-width:100%;
-height:100%;
+width:100vw;
+height:100vh;
 z-index:-3;
 }
 
@@ -66,8 +62,8 @@ animation:slide 21s infinite;
 position:fixed;
 top:0;
 left:0;
-width:100%;
-height:100%;
+width:100vw;
+height:100vh;
 background:rgba(0,0,0,0.45);
 z-index:-2;
 }
@@ -76,11 +72,11 @@ z-index:-2;
 
 .particles span{
 position:absolute;
-width:5px;
-height:5px;
+width:4px;
+height:4px;
 background:white;
 border-radius:50%;
-opacity:0.6;
+opacity:0.7;
 animation:float 12s linear infinite;
 }
 
@@ -96,26 +92,33 @@ animation:float 12s linear infinite;
 .particles span:nth-child(5){left:80%;animation-delay:3s;}
 .particles span:nth-child(6){left:90%;animation-delay:5s;}
 
-/* CONTENT */
+/* MAIN CONTENT */
 
 .container{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
 width:90%;
 max-width:400px;
+text-align:center;
+color:white;
 }
 
 /* LOGO */
 
 .logo{
-width:150px;
-margin-bottom:10px;
+width:120px;
+margin-bottom:15px;
 }
 
 /* TITLE */
 
 h1{
-font-size:20px;
+font-size:18px;
 margin-bottom:25px;
 font-weight:600;
+letter-spacing:0.5px;
 }
 
 /* INPUTS */
@@ -157,15 +160,17 @@ transform:scale(1.05);
 
 <body>
 
+<!-- BACKGROUND SLIDES -->
+
 <div class="slideshow">
 
-<img src="bg1.jpeg">
-<img src="bg2.jpeg">
-<img src="bg3.jpeg">
-<img src="bg4.jpeg">
-<img src="bg5.jpeg">
-<img src="bg6.jpeg">
-<img src="bg7.jpeg">
+<img src="bg1.jpg">
+<img src="bg2.jpg">
+<img src="bg3.jpg">
+<img src="bg4.jpg">
+<img src="bg5.jpg">
+<img src="bg6.jpg">
+<img src="bg7.jpg">
 
 </div>
 
@@ -180,12 +185,14 @@ transform:scale(1.05);
 <span></span>
 </div>
 
+<!-- CONTENT -->
+
 <div class="container">
 
-<img class="logo" src="logo.jpeg">
+<img class="logo" src="logo.png">
 
 <h1>
-IMAGIX – The Official Photography Society of KIIT Law School  
+IMAGIX – The Official Photography Society of KIIT Law School<br>
 (Link Repository System)
 </h1>
 
