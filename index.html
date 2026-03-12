@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>IMAGIX Repository</title>
 
 <style>
@@ -15,109 +13,136 @@ color:white;
 display:flex;
 align-items:center;
 justify-content:center;
-height:100vh;
-
-/* BACKGROUND IMAGE */
-background-image:url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
+min-height:100vh;
+overflow:hidden;
 }
 
-/* DARK OVERLAY */
-body::before{
-content:"";
-position:absolute;
+/* BACKGROUND SLIDESHOW /
+
+.slideshow{
+position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.7);
-z-index:0;
+z-index:-2;
 }
 
-/* FORM CONTAINER */
+.slideshow img{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:0;
+animation:slideShow 24s infinite;
+}
+
+.slideshow img:nth-child(1){animation-delay:0s}
+.slideshow img:nth-child(2){animation-delay:6s}
+.slideshow img:nth-child(3){animation-delay:12s}
+.slideshow img:nth-child(4){animation-delay:18s}
+
+@keyframes slideShow{
+0%{opacity:0}
+8%{opacity:1}
+25%{opacity:1}
+33%{opacity:0}
+100%{opacity:0}
+}
+
+/ DARK OVERLAY /
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.65);
+z-index:-1;
+}
+
+/ GLASS CARD /
 
 .container{
 position:relative;
-z-index:1;
-width:90%;
-max-width:420px;
-padding:30px;
-border-radius:15px;
+width:95%;
+max-width:520px;
+padding:40px;
+border-radius:20px;
 
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(12px);
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(16px);
 
 box-shadow:0 0 40px rgba(0,0,0,0.6);
-
-animation:fadeIn 1s ease;
 text-align:center;
+animation:fadeIn 1s ease;
 }
 
-/* LOGO */
+/ LOGO /
 
 .logo{
-width:90px;
-margin-bottom:15px;
-}
-
-/* TITLE */
-
-h1{
-font-size:20px;
+width:160px;
 margin-bottom:20px;
 }
 
-/* INPUTS */
+/ TITLE /
+
+h1{
+font-size:22px;
+margin-bottom:25px;
+}
+
+/ INPUTS /
 
 input{
 width:100%;
-padding:13px;
-margin-top:12px;
+padding:14px;
+margin-top:14px;
 border:none;
-border-radius:8px;
-background:rgba(255,255,255,0.1);
+border-radius:10px;
+background:rgba(255,255,255,0.15);
 color:white;
-font-size:14px;
+font-size:15px;
 outline:none;
+transition:0.3s;
 }
 
 input::placeholder{
-color:#ccc;
+color:#ddd;
 }
 
 input:focus{
-background:rgba(255,255,255,0.2);
+background:rgba(255,255,255,0.25);
+transform:scale(1.02);
 }
 
-/* BUTTON */
+/ BUTTON /
 
 button{
 width:100%;
-padding:13px;
-margin-top:18px;
+padding:14px;
+margin-top:20px;
 border:none;
-border-radius:8px;
+border-radius:10px;
 background:white;
 color:black;
 font-weight:bold;
 cursor:pointer;
-transition:all 0.3s ease;
+transition:0.3s;
 }
 
 button:hover{
-background:#f1f1f1;
 transform:scale(1.05);
-box-shadow:0 0 15px rgba(255,255,255,0.7);
+box-shadow:0 0 20px rgba(255,255,255,0.7);
 }
 
-/* ANIMATION */
+/ PAGE ANIMATION */
 
 @keyframes fadeIn{
 from{
 opacity:0;
-transform:translateY(30px);
+transform:translateY(40px);
 }
 to{
 opacity:1;
@@ -131,24 +156,31 @@ transform:translateY(0);
 
 <body>
 
+<div class="slideshow">
+<img src="bg1.jpg">
+<img src="bg2.jpg">
+<img src="bg3.jpg">
+<img src="bg4.jpg">
+</div>
+
+<div class="overlay"></div>
+
 <div class="container">
 
-<!-- PUT YOUR IMAGIX LOGO HERE -->
-
-<img class="logo" src="imagixlogo.png.png">
+<img class="logo" src="logo.png">
 
 <h1>
-IMAGIX Official Photography Society<br>
+IMAGIX-The Official Photography Society of kiit law school<br>
 (Link Repository System)
 </h1>
 
 <form id="form">
 
-<input name="name" placeholder="Name" required>
+<input id="name" name="name" placeholder="Name" required>
 
 <input name="roll" placeholder="Roll Number" required>
 
-<input name="event" placeholder="Event Covered" required>
+<input name="event" placeholder="Name of the Event Covered" required>
 
 <input type="url" name="drive" placeholder="Drive Link" required>
 
@@ -160,19 +192,24 @@ IMAGIX Official Photography Society<br>
 
 <script>
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbwpZ_kF1IJk7w-wMWha8scMP1OpCidOFDNHEHpo6jldT1BBtlZEYELHAloFs9HhY-WSJA/exec"
+const scriptURL="https://script.google.com/macros/s/AKfycbwpZ_kF1IJk7w-wMWha8scMP1OpCidOFDNHEHpo6jldT1BBtlZEYELHAloFs9HhY-WSJA/exec"
 
-const form = document.getElementById('form')
+const form=document.getElementById('form')
 
-form.addEventListener('submit', e => {
+form.addEventListener('submit',e=>{
 e.preventDefault()
 
-fetch(scriptURL, {
-method: 'POST',
-body: new FormData(form)
+const userName=document.getElementById("name").value
+
+fetch(scriptURL,{
+method:'POST',
+body:new FormData(form)
 })
-.then(() => alert("Submitted Successfully"))
-.catch(() => alert("Error"))
+.then(()=>{
+alert("Thank you, "+userName+"! Your response has been submitted.")
+form.reset()
+})
+.catch(()=>alert("Submission failed. Please try again."))
 })
 
 </script>
