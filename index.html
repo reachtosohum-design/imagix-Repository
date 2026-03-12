@@ -3,59 +3,126 @@
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>IMAGIX Repository</title>
 
 <style>
 
 body{
-background:#0a0a0a;
-font-family:Arial;
+margin:0;
+font-family:Arial, sans-serif;
 color:white;
 display:flex;
 align-items:center;
 justify-content:center;
 height:100vh;
-margin:0;
+
+/* BACKGROUND IMAGE */
+background-image:url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
 }
+
+/* DARK OVERLAY */
+body::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+z-index:0;
+}
+
+/* FORM CONTAINER */
 
 .container{
+position:relative;
+z-index:1;
 width:90%;
-max-width:400px;
-background:#121212;
-padding:25px;
-border-radius:10px;
-box-shadow:0 0 20px rgba(255,255,255,0.05);
+max-width:420px;
+padding:30px;
+border-radius:15px;
+
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(12px);
+
+box-shadow:0 0 40px rgba(0,0,0,0.6);
+
+animation:fadeIn 1s ease;
+text-align:center;
 }
 
+/* LOGO */
+
+.logo{
+width:90px;
+margin-bottom:15px;
+}
+
+/* TITLE */
+
 h1{
-text-align:center;
 font-size:20px;
 margin-bottom:20px;
 }
 
+/* INPUTS */
+
 input{
 width:100%;
-padding:12px;
-margin-top:10px;
+padding:13px;
+margin-top:12px;
 border:none;
-border-radius:6px;
-background:#1e1e1e;
+border-radius:8px;
+background:rgba(255,255,255,0.1);
 color:white;
+font-size:14px;
+outline:none;
 }
+
+input::placeholder{
+color:#ccc;
+}
+
+input:focus{
+background:rgba(255,255,255,0.2);
+}
+
+/* BUTTON */
 
 button{
 width:100%;
-padding:12px;
-margin-top:15px;
+padding:13px;
+margin-top:18px;
 border:none;
-border-radius:6px;
+border-radius:8px;
 background:white;
+color:black;
 font-weight:bold;
 cursor:pointer;
+transition:all 0.3s ease;
 }
 
 button:hover{
-opacity:0.9;
+background:#f1f1f1;
+transform:scale(1.05);
+box-shadow:0 0 15px rgba(255,255,255,0.7);
+}
+
+/* ANIMATION */
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 </style>
@@ -65,6 +132,10 @@ opacity:0.9;
 <body>
 
 <div class="container">
+
+<!-- PUT YOUR IMAGIX LOGO HERE -->
+
+<img class="logo" src="imagixlogo.png.png">
 
 <h1>
 IMAGIX Official Photography Society<br>
@@ -89,26 +160,22 @@ IMAGIX Official Photography Society<br>
 
 <script>
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbytEtyCcWbNKeTfi5V0-Rda-w2glCF7B3ObGBspT0755Pn1E618U2VXPU5IO1jwXTaNGQ/exec"
+const scriptURL = "https://script.google.com/macros/s/AKfycbwpZ_kF1IJk7w-wMWha8scMP1OpCidOFDNHEHpo6jldT1BBtlZEYELHAloFs9HhY-WSJA/exec"
 
 const form = document.getElementById('form')
 
 form.addEventListener('submit', e => {
-  e.preventDefault()
+e.preventDefault()
 
-  fetch(scriptURL, {
-    method:'POST',
-    body:new FormData(form)
-  })
-  .then(() => alert("Submitted Successfully"))
-  .catch(() => alert("Error"))
+fetch(scriptURL, {
+method: 'POST',
+body: new FormData(form)
+})
+.then(() => alert("Submitted Successfully"))
+.catch(() => alert("Error"))
 })
 
 </script>
 
 </body>
 </html>
-
-
-
-
